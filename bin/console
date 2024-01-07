@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "bundler/setup"
+require "youtube"
+
+# You can add fixtures and/or initialization code here to make experimenting
+# with your gem easier. You can also use a different console, if you like.
+
+# (If you use this, don't forget to add pry to your Gemfile!)
+# require "pry"
+# Pry.start
+
+# require "irb"
+# IRB.start(__FILE__)
+
+yt_extractor = Youtube::DataExtractor.new("FtutLA63Cp8")
+yt_thumb = Youtube::Thumbnail.new(yt_extractor)
+
+puts yt_extractor.video_uri
+puts yt_extractor.player_uri
+# yt.video_json_untouched("dump.json")
+
+# puts yt_thumb.default_json
+filename = yt_thumb.default_filename
+puts filename
