@@ -1,6 +1,6 @@
 require 'test/unit'
 
-require_relative '../lib/youtube'
+require_relative '../lib/youtube-data'
 require_relative 'mocks'
 
 

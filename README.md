@@ -1,4 +1,4 @@
-# Youtube
+# Youtube Data Extractor
 
 A ruby gem for extracting youtube video data.
 
@@ -8,18 +8,24 @@ and I am still new to Ruby, so some things will be changed a lot in the future m
 
 ## Installation
 
-Written and tested with `bundle 2.3.5` and `ruby 3.0.2` on `Ubuntu 22.04.3 LTS x86_64-linux-gnu`.
+Written and tested with and `ruby 3.0.2` on `Ubuntu 22.04.3 LTS`.
 
-Install from project root with bundle:
+Install required gems:
 
 ```bash
 bundle install
 ```
 
-Or install from gems server:
+Build and install gem file locally:
 
 ```bash
-gem install youtube
+gem build && gem install youtube-data-[version].gem
+```
+
+Or install from gem server:
+
+```bash
+gem install youtube-data
 ```
 
 
@@ -41,7 +47,7 @@ Running tests:
 
 ```bash
 cd tests  # These commands must be run in ./tests for relative path reasons.
-ruby test_all.rb  # To rum all tests, or you can just call an individual test instead.
+ruby test_all.rb  # To run all tests, or you can just call an individual test instead.
 ```
 
 

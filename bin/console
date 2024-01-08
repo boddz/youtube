@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 require "bundler/setup"
-require "youtube"
+require "youtube-data"
 
 # You can add fixtures and/or initialization code here to make experimenting
 # with your gem easier. You can also use a different console, if you like.
@@ -16,6 +16,8 @@ require "youtube"
 
 yt_extractor = Youtube::DataExtractor.new("FtutLA63Cp8")
 yt_thumb = Youtube::Thumbnail.new(yt_extractor)
+
+# yt_extractor.video_raw_html do |html| File.write("raw_video.html", html) end
 
 puts yt_extractor.video_uri
 puts yt_extractor.player_uri

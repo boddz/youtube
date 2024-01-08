@@ -3,21 +3,21 @@
 require_relative "lib/youtube/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "youtube"
+  spec.name = "youtube-data"
   spec.version = Youtube::VERSION
   spec.authors = ["boddz"]
   spec.email = ["boddz.dev@gmail.com"]
 
   spec.summary = "A youtube data scraper."
   spec.description = "Extract youtube video information using ruby."
-  spec.homepage = "https://github.com/boddz"
+  spec.homepage = "https://github.com/boddz/youtube"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 
-  spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
+  spec.metadata["allowed_push_host"] = "https://rubygems.org"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/boddz"
+  spec.metadata["source_code_uri"] = "https://github.com/boddz/youtube"
   # spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
 
   # Specify which files should be added to the gem when it is released.
