@@ -9,5 +9,16 @@ require_relative 'youtube/extractor'
 require_relative 'youtube/thumbnail'
 
 module Youtube
+
+  class InitExtractorError < RuntimeError
+  end
+
+  class InvalidVideoIDError < StandardError
+  end
+
+  class InvalidPathError < StandardError
+  end
+
   class Error < StandardError; end
+
 end

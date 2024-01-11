@@ -2,15 +2,6 @@
 
 module Youtube
 
-  class InitExtractorError < RuntimeError
-  end
-
-  class InvalidVideoIDError < StandardError
-  end
-
-  class InvalidPathError < StandardError
-  end
-
   # For extracting the data needed from a video in a native format.
   #
   # @param video_id [String] The video ID in which to scrape data from.
