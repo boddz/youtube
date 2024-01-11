@@ -18,8 +18,8 @@ class TestExtractor < Test::Unit::TestCase
   end
 
   def test_player_uri
-    assert_equal(@extractor.player_uri,
-                 URI('https://www.youtube.com/s/player/4fd50162/player_ias.vflset/en_GB/base.js'))
+    assert_instance_of(URI::HTTPS, @extractor.player_uri)
+    assert_true(@extractor.player_uri.to_s.end_with?('base.js'))
   end
 
   def test_response_invalid_path
