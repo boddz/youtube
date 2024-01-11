@@ -18,7 +18,7 @@ module Youtube
         @session = opts[:mock_session]
       end
 
-      @thumb_json_array = jump_to_in_json
+      @thumb_json_array = Youtube::Video.new(@extractor).thumbnails
       @thumb_default_json = @thumb_json_array[0]
     end
 
@@ -42,24 +42,19 @@ module Youtube
       yield @thumb_default_json
     end
 
-    # Destination URL to default thumbnail file on the server which is returned/ yielded as a `URI::HTTPS` instance.
+    # @return [URI::HTTPS] Destination of the default thumbnail file on the server.
     def default_url
-      return URI(@thumb_default_json['url']) unless block_given?
-      yield URI(@thumb_default_json['url'])
+      return URI(@thumb_default_json['url'])
     end
 
-    # The file name for the default thumbnail which is returned/ yielded as `String` instance.
+    # @return [String] Filename for the default thumbnail.
     def default_filename
-      filename = default_url.path[/[A-Za-z0-9]+\.[A-Za-z0-9]+/]
-      return filename unless block_given?
-      yield filename
+      return default_url.path[/[A-Za-z0-9]+\.[A-Za-z0-9]+/]
     end
 
-    # The bytes contained in the default thumbnail file stored on the server returned/ yielded as `String` instance.
+    # @return [String] The bytes from the default thumbnail file on the server. Sends one request.
     def default_bytes
-      res = get_raw(default_url.path)
-      return res.body unless block_given?
-      yield res.body
+      reutrn get_raw(default_url.path).body
     end
 
     # Send a simple get request using the thumbnail session. This should be how the module sends all further requests
@@ -84,10 +79,6 @@ module Youtube
         raise InvalidPathError, 'Path must be prefixed with `/\''
       end
       return @session.get(path)
-    end
-
-    private def jump_to_in_json
-      return @extractor.video_json_untouched['microformat']['playerMicroformatRenderer']['thumbnail']['thumbnails']
     end
 
   end
