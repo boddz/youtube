@@ -7,6 +7,7 @@ require 'json'
 require_relative 'youtube/version'
 require_relative 'youtube/extractor'
 require_relative 'youtube/thumbnail'
+require_relative 'youtube/video'
 
 module Youtube
 
