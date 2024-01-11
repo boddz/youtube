@@ -1,9 +1,12 @@
 # Youtube Data Extractor
 
-A ruby gem for extracting youtube video data.
+A Ruby gem for extracting youtube video data.
 
-Currently a work in progress. This is just a mirror at the moment so support will be limited because of this for now,
-and I am still new to Ruby, so some things will be changed a lot in the future most likely.
+This does not use the API that google provides, this is just data gathered from scraping raw HTML data. No reason
+really, I just find doing so more fun.
+
+This gem is still in it's earlier stages of development so expect stuff to change. I will try not to change too much
+in terms of interface methods/ classes that can break your existing scripts for convenience sake.
 
 
 ## Installation
@@ -31,7 +34,7 @@ gem install youtube-data
 
 ## Usage
 
-TODO: Write usage instructions here...
+For some examples on how to use this gem go and check out the `examples` sub-directory.
 
 
 ## Development
@@ -47,6 +50,7 @@ Running tests:
 
 ```bash
 cd tests  # These commands must be run in ./tests for relative path reasons.
+./data/get_data  # Fetch data used in test. Used for mocked session objects to avoid sending requests when testing.
 ruby test_all.rb  # To run all tests, or you can just call an individual test instead.
 ```
 
