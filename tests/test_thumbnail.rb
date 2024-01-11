@@ -4,40 +4,36 @@ require_relative '../lib/youtube-data'
 require_relative 'mocks'
 
 
-class TestExtractor < Test::Unit::TestCase
+class TestThumbnail < Test::Unit::TestCase
   def setup
     @mock_session = Mocks::MockSession.new(nil)
     # Copy valid video html from file into the mock sessions `get` mock response which acts the same as normal session.
     @mock_session.set_res_body(File.read('./data/raw_video.html'))
     # Specify mock session to use and replace actual session with `opts[:mock_session]`.
     @extractor = Youtube::DataExtractor.new('FtutLA63Cp8', {:mock_session => @mock_session})
-  end
-
-  def test_video_uri
-    assert_equal(@extractor.video_uri, URI('https://www.youtube.com/watch?v=FtutLA63Cp8'))
-  end
-
-  def test_player_uri
-    assert_equal(@extractor.player_uri,
-                 URI('https://www.youtube.com/s/player/4fd50162/player_ias.vflset/en_GB/base.js'))
+    @thumbnail = Youtube::Thumbnail.new(@extractor, {:mock_session => @mock_session})
   end
 
   def test_response_invalid_path
     assert_raise(Youtube::InvalidPathError) do
-      @extractor.get_raw(nil)
+      @thumbnail.get_raw(nil)
     end
     assert_raise(Youtube::InvalidPathError) do
-      @extractor.get_raw("invalid/path")
+      @thumbnail.get_raw("invalid/path")
     end
   end
 
   def test_response_valid_mock_returned
-    res = @extractor.get_raw('/')
+    res = @thumbnail.get_raw('/')
     assert_instance_of(Mocks::MockResponse, res)
   end
 
-  def test_not_raise_untouched_json_data
-    @extractor.video_json_untouched  # Valid json hash returned.
+  def test_thumbnails_json
+    assert_instance_of(Array, @thumbnail.thumbnails_json)
+  end
+
+  def test_default_json
+    assert_instance_of(Hash, @thumbnail.default_json)
   end
 
 end
