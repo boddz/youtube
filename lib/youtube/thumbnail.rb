@@ -9,10 +9,14 @@ module Youtube
   class Thumbnail
     BASEHOST = URI('https://i.ytimg.com/')
 
-    def initialize(extractor)
+    def initialize(extractor, opts = {})
       @extractor = extractor
 
+      # The session to use for the extractor allows information to persist during requests/session.
       @session = Net::HTTP.start(BASEHOST.hostname, {'use_ssl': true})
+      if opts.include?(:mock_session)
+        @session = opts[:mock_session]
+      end
 
       @thumb_json_array = jump_to_in_json
       @thumb_default_json = @thumb_json_array[0]
