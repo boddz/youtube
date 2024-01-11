@@ -8,6 +8,10 @@ module Youtube
       @extractor = extractor
     end
 
+    def inspect
+      return itself
+    end
+
     # @return [Hash] The section of scraped json that contains video information just as is.
     def json
       @video_info_json = @extractor.video_json_untouched['videoDetails']

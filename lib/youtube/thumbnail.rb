@@ -22,6 +22,10 @@ module Youtube
       @thumb_default_json = @thumb_json_array[0]
     end
 
+    def inspect
+      return itself
+    end
+
     # An array of thumbnail(s) json data (stored as a hash).
     #
     # @return [Array] The array of hashes about the thumbnail(s).
@@ -54,7 +58,12 @@ module Youtube
 
     # @return [String] The bytes from the default thumbnail file on the server. Sends one request.
     def default_bytes
-      reutrn get_raw(default_url.path).body
+      return get_raw(default_url.path).body
+    end
+
+    # Downloads default thumbnail to cwd with it's name from server unless a path/ file name is specified.
+    def download_default(file_path=nil)
+      download_thumbnail(default_bytes, if file_path.nil? then default_filename else file_path end)
     end
 
     # Send a simple get request using the thumbnail session. This should be how the module sends all further requests
@@ -68,6 +77,13 @@ module Youtube
       res = get_request_path(path)
       return res unless block_given?
       yield res
+    end
+
+    # Downloads thumbnail bytes (writes to file in byte mode).
+    private def download_thumbnail(bytes, file_path=nil)
+      File.open(file_path, 'wb') do |file_stream|
+        file_stream.write(bytes)
+      end
     end
 
     # Use `get_raw` method it's the same, but is shorter and can yield.

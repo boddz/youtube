@@ -33,6 +33,10 @@ module Youtube
       @video_player_path = find_player_base_js_path_in_html(@video_html)
     end
 
+    def inspect
+      return itself
+    end
+
     # Full url to the video's html page returned/ yielded as a `URI::HTTPS` instance.
     def video_uri
       uri = URI.join(HOMEPAGE, video_path)
